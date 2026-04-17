@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: astra-workspace
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: free
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: ASTRA_API_KEY
+        sync: false
+      - key: AUTHORIZED_USER_ID
+        sync: false
+      - key: DATABASE_PATH
+        value: /var/data/workspace.db
+    disk:
+      name: workspace-data
+      mountPath: /var/data
+      sizeGB: 1
